@@ -1,0 +1,138 @@
+/* ---------- RESET ---------- */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  user-select: none;
+}
+
+/* ---------- PAGE ---------- */
+body {
+  margin: 0;
+  background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
+  min-height: 100vh;
+}
+
+/* ---------- MAIN CARD ---------- */
+.container {
+  position: relative; /* REQUIRED for No button */
+  max-height: 90vh;
+  width: 90vw;
+  background: white;
+  padding: 30px 40px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+
+  align-items: center;
+  justify-items: center;
+
+  overflow: hidden; /* Prevent scrollbars */
+}
+
+/* ---------- TEXT ---------- */
+h1 {
+  font-family: 'Pacifico', cursive;
+  font-size: 2rem;
+  color: #ff4d6d;
+  text-align: center;
+  grid-column: 1;
+  grid-row: 1;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+#tease-text {
+  font-size: 1rem;
+  color: #555;
+  text-align: center;
+  grid-column: 2;
+  grid-row: 1;
+}
+
+/* ---------- IMAGE ---------- */
+.image {
+  max-height: 250px;
+  width: auto;
+  border-radius: 15px;
+  grid-column: 1;
+}
+
+/* ---------- BUTTON HOLDER ---------- */
+.buttons {
+  grid-column: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* IMPORTANT:
+     Do NOT position this relative.
+     It must NOT trap the No button.
+  */
+  position: static;
+}
+
+/* ---------- BUTTONS ---------- */
+button {
+  padding: 18px 40px;
+  font-size: 1.2rem;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  white-space: nowrap;
+}
+
+/* YES BUTTON */
+#yesBtn {
+  background-color: #ff4d6d;
+  color: white;
+  position: relative;
+  z-index: 10;
+}
+
+#yesBtn:hover {
+  transform: scale(1.1);
+}
+
+/* NO BUTTON */
+#noBtn {
+  position: absolute; /* Positioned relative to .container */
+  background-color: #ccc;
+  color: #333;
+  top: 50%;
+  transform: translateY(-50%);
+
+  pointer-events: none; /* Not clickable */
+  cursor: not-allowed;
+
+  transition: left 0.15s ease, top 0.15s ease;
+}
+
+/* ---------- SHAKE EFFECT ---------- */
+@keyframes shake {
+  0% { transform: translate(0); }
+  25% { transform: translate(2px, -2px); }
+  50% { transform: translate(-2px, 2px); }
+  75% { transform: translate(2px, 2px); }
+  100% { transform: translate(0); }
+}
+
+.shake {
+  animation: shake 0.2s;
+}
+
+/* ---------- CONFETTI FALL ---------- */
+@keyframes fall {
+  to {
+    transform: translateY(110vh);
+    opacity: 0;
+  }
+}

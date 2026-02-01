@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Will You Be My Valentine? 💘</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <div class="container">
+    <h1>Will you be my Valentine? </h1>
+
+    <img 
+      src="Saheli-Avatar.png" 
+      alt="saheli avatar"
+      class="image"
+    />
+
+    <p id="tease-text">Be honest 😌</p>
+
+    <div class="buttons">
+      <button id="yesBtn">Yes 💕</button>
+      <button id="noBtn">No 🙄</button>
+    </div>
+  </div>
+
+  <div id="celebration" class="celebration-container hidden">
+    <img id="celebrationGif" src="https://media1.tenor.com/m/9qZhM0uswAYAAAAd/bully-maguire-dance.gif" alt="celebration" class="celebration-gif" />
+  </div>
+
+  <div id="finalMessage" class="final-message hidden">
+    <div class="message-content">
+      <h2>Meet you in the evening</h2>
+      <p>This is going to be fun!</p>
+      <div class="hearts">
+        <span class="heart">❤️</span>
+        <span class="heart">💕</span>
+        <span class="heart">💖</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="confetti-container" class="confetti-container"></div>
+
+  <audio id="celebrationAudio" preload="auto">
+    <source src="https://www.youtube.com/watch?v=xRmlbdy-dtU" type="audio/mpeg">
+  </audio>
+
+  <!-- Layer used to host floating/moving UI so it can't be occluded by stacking contexts -->
+  <div id="floating-layer" aria-hidden="true"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

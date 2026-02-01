@@ -1,0 +1,366 @@
+/* ---------- RESET ---------- */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  user-select: none;
+}
+
+/* ---------- PAGE ---------- */
+body {
+  margin: 0;
+  background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
+  min-height: 100vh;
+}
+
+/* ---------- MAIN CARD ---------- */
+.container {
+  position: relative; /* REQUIRED for No button */
+  max-height: 90vh;
+  width: 90vw;
+  background: white;
+  padding: 30px 40px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+
+  align-items: center;
+  justify-items: center;
+
+  overflow: hidden; /* Prevent scrollbars */
+}
+
+@media (max-width: 768px) {
+  .container {
+    max-height: 100vh;
+    width: 95vw;
+    padding: 20px 20px;
+    gap: 20px;
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---------- TEXT ---------- */
+h1 {
+  font-family: 'Pacifico', cursive;
+  font-size: 2rem;
+  color: #ff4d6d;
+  text-align: center;
+  grid-column: 1;
+  grid-row: 1;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+  }
+}
+
+#tease-text {
+  font-size: 1rem;
+  color: #555;
+  text-align: center;
+  grid-column: 2;
+  grid-row: 1;
+}
+
+@media (max-width: 768px) {
+  #tease-text {
+    font-size: 0.9rem;
+    grid-column: 1;
+    grid-row: auto;
+  }
+}
+
+/* ---------- IMAGE ---------- */
+.image {
+  max-height: 250px;
+  width: auto;
+  border-radius: 15px;
+  grid-column: 1;
+}
+
+@media (max-width: 768px) {
+  .image {
+    max-height: 180px;
+    grid-column: 1;
+  }
+}
+
+/* ---------- BUTTON HOLDER ---------- */
+.buttons {
+  grid-column: 2;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  /* IMPORTANT:
+     Do NOT position this relative.
+     It must NOT trap the No button.
+  */
+  position: static;
+}
+
+@media (max-width: 768px) {
+  .buttons {
+    grid-column: 1;
+    grid-row: auto;
+    position: relative;
+    height: auto;
+    width: 100%;
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+/* ---------- BUTTONS ---------- */
+button {
+  padding: 18px 40px;
+  font-size: 1.2rem;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  white-space: nowrap;
+}
+
+/* YES BUTTON */
+#yesBtn {
+  background-color: #ff4d6d;
+  color: white;
+  position: relative;
+  z-index: 10;
+}
+
+#yesBtn:hover {
+  transform: scale(1.1);
+}
+
+/* NO BUTTON */
+#noBtn {
+  position: absolute; /* Positioned relative to .container */
+  background-color: #ccc;
+  color: #333;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+
+  pointer-events: none; /* Not clickable */
+  cursor: not-allowed;
+
+  transition: left 0.15s ease, top 0.15s ease;
+}
+
+@media (max-width: 768px) {
+  #noBtn {
+    position: relative;
+    top: auto;
+    transform: none;
+  }
+}
+
+/* ---------- SHAKE EFFECT ---------- */
+@keyframes shake {
+  0% { transform: translate(0); }
+  25% { transform: translate(2px, -2px); }
+  50% { transform: translate(-2px, 2px); }
+  75% { transform: translate(2px, 2px); }
+  100% { transform: translate(0); }
+}
+
+.shake {
+  animation: shake 0.2s;
+}
+
+/* ---------- CONFETTI FALL ---------- */
+@keyframes fall {
+  to {
+    transform: translateY(110vh);
+    opacity: 0;
+  }
+}
+
+/* ---------- CELEBRATION ---------- */
+.celebration-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+  animation: fadeIn 0.3s ease;
+}
+
+.celebration-container.hidden {
+  display: none;
+}
+
+.celebration-gif {
+  width: 500px;
+  height: 500px;
+  object-fit: contain;
+  animation: scaleIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ---------- CONFETTI ---------- */
+.confetti-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 999;
+}
+
+.confetti {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #ff4d6d;
+  animation: confettiFall 3s linear forwards;
+}
+
+.confetti.confetti-pink {
+  background-color: #ff4d6d;
+}
+
+.confetti.confetti-yellow {
+  background-color: #ffd700;
+}
+
+.confetti.confetti-purple {
+  background-color: #da70d6;
+}
+
+.confetti.confetti-cyan {
+  background-color: #00d4ff;
+}
+
+@keyframes confettiFall {
+  to {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* ---------- FINAL MESSAGE ---------- */
+.final-message {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #ffafbd, #ffc3a0);
+  z-index: 1000;
+  animation: fadeIn 0.5s ease;
+}
+
+.final-message.hidden {
+  display: none;
+}
+
+.message-content {
+  text-align: center;
+  background: white;
+  padding: 60px 40px;
+  border-radius: 30px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  max-width: 500px;
+  animation: scaleIn 0.6s ease;
+}
+
+.message-content h2 {
+  font-family: 'Pacifico', cursive;
+  font-size: 2.5rem;
+  color: #ff4d6d;
+  margin-bottom: 20px;
+  animation: bounce 2s infinite;
+}
+
+.message-content p {
+  font-size: 1.2rem;
+  color: #555;
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: 30px;
+}
+
+.hearts {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  font-size: 3rem;
+}
+
+.heart {
+  display: inline-block;
+  animation: heartBeat 1.5s ease-in-out infinite;
+}
+
+.heart:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.heart:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes heartBeat {
+  0%, 100% {
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.2);
+  }
+  50% {
+    transform: scale(1);
+  }
+}
