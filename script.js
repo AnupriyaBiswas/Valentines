@@ -189,6 +189,9 @@ yesBtn.addEventListener("click", () => {
   // Show celebration
   celebration.classList.remove("hidden");
   
+  // Hide the No button
+  noBtn.classList.add("hidden");
+  
   // Start music
   playMusic();
   
